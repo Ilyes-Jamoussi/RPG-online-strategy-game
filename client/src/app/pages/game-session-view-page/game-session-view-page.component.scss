@@ -1,0 +1,186 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'sass:color';
+
+.match-view-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1rem;
+    height: 100vh;
+    padding: 1rem;
+    background: #eef2f6;
+    color: #1e293b;
+    overflow: hidden;
+
+    @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+
+        .left-panel,
+        .center-panel,
+        .right-panel {
+            width: 100%;
+            min-height: 0;
+        }
+
+        .grid-container {
+            aspect-ratio: 1;
+            width: 100%;
+        }
+    }
+
+    .section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #3b82f6;
+        margin: 0 0 0.5rem 0;
+        padding-bottom: 0.25rem;
+        border-bottom: 2px solid rgba(59, 130, 246, 0.1);
+    }
+
+    .panel-section {
+        background: white;
+        border-radius: 12px;
+        padding: 0.75rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    // Left panel - division 2/3 1/3
+    .left-panel {
+        display: grid;
+        grid-template-rows: 2fr 1fr;
+        gap: 1rem;
+        height: calc(100vh - 2rem);
+        overflow: hidden;
+    }
+
+    // Center panel
+    .center-panel {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        height: calc(100vh - 2rem);
+        overflow: hidden;
+
+        .grid-container {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            padding: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-height: 0;
+
+            app-game-board {
+                flex: 1;
+                min-height: 0;
+                max-width: 100%;
+                aspect-ratio: 1;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        .actions-container {
+            flex: 0 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 0.75rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 0.25rem;
+        }
+    }
+
+    // Right panel - division 1/3 1/3 1/3
+    .right-panel {
+        display: grid;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 1rem;
+        height: calc(100vh - 2rem);
+        overflow: hidden;
+
+        .panel-section {
+            min-height: 0;
+        }
+
+        .messages-section {
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+
+            app-match-messages {
+                flex: 1;
+                min-height: 0;
+            }
+        }
+    }
+
+    // Composants
+    app-player-panel,
+    app-player-inventory,
+    app-match-info,
+    app-player-list,
+    app-match-messages,
+    app-match-actions {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        overflow: hidden;
+    }
+}
+
+.game-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: $spacing-md;
+    position: relative;
+
+    .section-title {
+        margin: 0;
+    }
+
+    .timer-wrapper {
+        width: 48px;
+        height: 48px;
+        position: relative;
+        margin-right: $spacing-md;
+
+        // Effet de superposition subtil
+        &::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba($accent-primary, 0.15), transparent);
+            z-index: -1;
+        }
+    }
+}
+
+// Ajustement du timer pour cette vue spécifique
+:host ::ng-deep .timer {
+    .timer-display {
+        font-size: 1.5rem;
+        font-weight: 600;
+        background: rgba($primary-light, 0.85);
+    }
+
+    .timer-progress {
+        circle {
+            stroke-width: 3px;
+        }
+    }
+}

@@ -1,0 +1,30 @@
+<div class="join-session-container">
+    <header class="page-header">
+        <button class="back-button" (click)="goBack()">
+            <span class="button-content">Retour</span>
+        </button>
+    </header>
+
+    <h2 class="title">Joindre une partie</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+        <div class="input-wrapper">
+            <input
+                type="text"
+                maxlength="4"
+                inputmode="numeric"
+                formControlName="accessCode"
+                class="access-code-input"
+                placeholder="Saisir votre code à 4 chiffres"
+            />
+        </div>
+
+        <button type="submit" [disabled]="form.invalid" class="join-button">Joindre</button>
+
+        <div class="error-container" *ngIf="errorMessage()">
+            <div class="error">
+                {{ errorMessage() }}
+            </div>
+        </div>
+    </form>
+</div>

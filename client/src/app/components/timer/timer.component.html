@@ -1,0 +1,9 @@
+<div class="timer">
+    <svg class="timer-progress" viewBox="0 0 100 100">
+        <circle class="timer-progress-bg" cx="50" cy="50" r="45" />
+        <circle class="timer-progress-bar" cx="50" cy="50" r="45" [style.strokeDashoffset]="getProgressOffset(timeRemaining())" />
+    </svg>
+    <div class="timer-display" [class.ending]="timeRemaining() <= 5">
+        {{ formatTime(timeRemaining()) }}
+    </div>
+</div>

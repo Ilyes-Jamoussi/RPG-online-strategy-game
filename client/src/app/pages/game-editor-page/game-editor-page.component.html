@@ -1,0 +1,91 @@
+<div class="game-editor-page">
+    <div class="editor-title">
+        <h1>Éditeur de jeu</h1>
+    </div>
+
+    <main class="editor-content">
+        <div class="editor-grid">
+            <aside class="editor-panel left-panel">
+                <div class="panel-section">
+                    <h2 class="section-title">Outils de tuiles</h2>
+                    <app-tile-toolbox class="toolbox-container"></app-tile-toolbox>
+                </div>
+
+                <div class="panel-section">
+                    <h2 class="section-title">Items disponibles</h2>
+                    <app-items-container class="items-container"></app-items-container>
+                </div>
+            </aside>
+
+            <section class="editor-main">
+                <div class="map-container" id="map-capture">
+                    <app-game-map class="game-map"></app-game-map>
+                </div>
+            </section>
+
+            <aside class="editor-panel right-panel">
+                <div class="panel-section">
+                    <h2 class="section-title">Configuration du jeu</h2>
+                    <div class="form-container">
+                        <div class="form-group">
+                            <label for="game-name">Nom du jeu</label>
+                            <mat-form-field>
+                                <mat-label>Nom du jeu</mat-label>
+                                <input matInput [formControl]="name" placeholder="Entrez le nom du jeu" />
+                                @if (!gameEditorService.validateName() && name.touched) {
+                                <mat-error>Le nom du jeu ne doit pas être vide</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="game-description">Description</label>
+                            <mat-form-field>
+                                <mat-label>Description</mat-label>
+                                <textarea matInput [formControl]="description" placeholder="Entrez la description du jeu"></textarea>
+                                @if (!gameEditorService.validateDescription() && description.touched) {
+                                <mat-error>La description du jeu ne doit pas être vide</mat-error>
+                                }
+                            </mat-form-field>
+                        </div>
+
+                        <div class="validation-section" [ngClass]="{ 'has-errors': gameEditorService.validationErrors().length > 0 }">
+                            @if (gameEditorService.validationErrors().length > 0) {
+                            <div class="validation-errors">
+                                <h3>Erreurs de validation :</h3>
+                                <ul>
+                                    @for (error of gameEditorService.validationErrors(); track error) {
+                                    <li>{{ error }}</li>
+                                    }
+                                </ul>
+                            </div>
+                            } @else {
+                            <div class="validation-requirements">
+                                <h3>Requis pour la sauvegarde :</h3>
+                                <ul>
+                                    <li>Les portes doivent être placées entre deux murs</li>
+                                    <li>Toutes les tuiles de terrain doivent être accessibles</li>
+                                    <li>Plus de 50% de la carte doit être en terrain</li>
+                                    <li>Tous les points de départ doivent être placés</li>
+                                    <li>Le nombre d'items doit être valide</li>
+                                </ul>
+                            </div>
+                            }
+                        </div>
+
+                        <div class="action-buttons">
+                            <button class="btn btn-danger" (click)="onResetMap()" aria-label="Réinitialiser la carte">
+                                <span class="btn-icon">↺</span>
+                                <span class="btn-text">Réinitialiser</span>
+                            </button>
+                            <button class="btn btn-primary" (click)="onSaveMap()">
+                                <mat-icon>save_alt</mat-icon>
+                                Sauvegarder
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</div>

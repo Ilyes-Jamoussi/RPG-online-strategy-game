@@ -1,0 +1,53 @@
+.avatar-animated {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 300px;
+    background: #f8f9fa;
+    border-radius: 0.8rem;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin: 0 auto;
+
+    &:hover {
+        border-color: #3498db;
+        box-shadow: 0 4px 8px rgba(52, 152, 219, 0.15);
+        transform: translateY(-2px);
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 0.6rem;
+        padding: 0.75rem;
+    }
+
+    .no-avatar-message {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        color: #6c757d;
+        text-align: center;
+        padding: 1.5rem;
+
+        .avatar-icon {
+            color: #3498db;
+            opacity: 0.7;
+            width: 80px;
+            height: 80px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin: 0;
+            color: #3498db;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+<!-- Main container with grid layout -->
+<div class="match-view-container">
+    <!-- Left panel -->
+    <div class="left-panel">
+        <div class="panel-section">
+            <h2 class="section-title">Informations du joueur</h2>
+            <app-my-game-session-player-info></app-my-game-session-player-info>
+        </div>
+
+        <div class="panel-section">
+            <h2 class="section-title">Inventaire</h2>
+            <app-player-inventory></app-player-inventory>
+        </div>
+    </div>
+
+    <!-- Center panel -->
+    <div class="center-panel">
+        <div class="grid-container">
+            <div class="game-header">
+                <h2 class="section-title">Carte de jeu</h2>
+                <div class="timer-wrapper">
+                    <app-timer></app-timer>
+                </div>
+            </div>
+            <app-game-board></app-game-board>
+        </div>
+
+        <div class="actions-container">
+            <h2 class="section-title">Actions</h2>
+            <app-match-actions (endTurn)="onEndTurn()" (action)="onAction()" (abandon)="onAbandon()"> </app-match-actions>
+        </div>
+    </div>
+
+    <!-- Right panel -->
+    <div class="right-panel">
+        <div class="panel-section">
+            <h2 class="section-title">Informations de partie</h2>
+            <app-game-session-info></app-game-session-info>
+        </div>
+
+        <div class="panel-section">
+            <h2 class="section-title">Joueurs</h2>
+            <app-game-session-players></app-game-session-players>
+        </div>
+
+        <div class="panel-section messages-section">
+            <h2 class="section-title">Messages</h2>
+            <app-match-messages></app-match-messages>
+        </div>
+    </div>
+</div>

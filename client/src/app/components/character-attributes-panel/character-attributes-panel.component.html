@@ -1,0 +1,107 @@
+<div class="character-attributes-panel">
+    <!-- Section du nom du personnage -->
+    <div class="attribute-group name-section">
+        <h3>Nom du personnage</h3>
+        <div class="name-input-container">
+            <input
+                type="text"
+                [ngModel]="playerService.player().name"
+                (ngModelChange)="updateCharacterName($event)"
+                placeholder="Entrez le nom de votre personnage"
+                maxlength="20"
+                class="character-name-input"
+            />
+        </div>
+    </div>
+
+    <!-- Section des attributs de base -->
+    <div class="attribute-group base-attributes">
+        <h3>Attributs de base</h3>
+        <div class="attributes-container">
+            <!-- Vie -->
+            <div class="attribute-bar">
+                <div class="attribute-header">
+                    <span class="name">Vie</span>
+                    <span class="value">{{ getAttributeValue('maxHp') }}/6</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" [style.width.%]="(getAttributeValue('maxHp') / 6) * 100"></div>
+                </div>
+                <button class="bonus-button" (click)="selectBonus('maxHp')" [class.selected]="isBonusSelected('maxHp')">+2 Bonus</button>
+                <p class="description">Points de vie du personnage</p>
+            </div>
+
+            <!-- Rapidité -->
+            <div class="attribute-bar">
+                <div class="attribute-header">
+                    <span class="name">Rapidité</span>
+                    <span class="value">{{ getAttributeValue('speed') }}/6</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" [style.width.%]="(getAttributeValue('speed') / 6) * 100"></div>
+                </div>
+                <button class="bonus-button" (click)="selectBonus('speed')" [class.selected]="isBonusSelected('speed')">+2 Bonus</button>
+                <p class="description">Détermine l'ordre des tours et les points de mouvement</p>
+            </div>
+
+            <!-- Attaque -->
+            <div class="attribute-bar">
+                <div class="attribute-header">
+                    <span class="name">Attaque</span>
+                    <span class="value">{{ getAttributeValue('attack') }}/4</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" [style.width.%]="(getAttributeValue('attack') / 4) * 100"></div>
+                </div>
+                <p class="description">Force avec laquelle une attaque est faite sur l'adversaire</p>
+            </div>
+
+            <!-- Défense -->
+            <div class="attribute-bar">
+                <div class="attribute-header">
+                    <span class="name">Défense</span>
+                    <span class="value">{{ getAttributeValue('defense') }}/4</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress" [style.width.%]="(getAttributeValue('defense') / 4) * 100"></div>
+                </div>
+                <p class="description">Capacité à bloquer l'attaque d'un adversaire</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section des dés de combat -->
+    <div class="attribute-group dice-section">
+        <h3>Sélection des dés de combat</h3>
+        <div class="dice-container">
+            <div class="attribute dice-button" (click)="selectDice('attackDice')" [class.selected]="isDiceSelected('attackDice')">
+                <span class="label">Dé d'attaque</span>
+                <div class="dice-display">
+                    <img
+                        class="dice-icon"
+                        [src]="getDiceImage(playerService.player().attackDice === diceType.D6 ? diceType.D6 : diceType.D4)"
+                        alt="Attack dice"
+                    />
+                </div>
+                <div class="dice-value">{{ playerService.player().attackDice === diceType.D6 ? '6' : '4' }}</div>
+            </div>
+
+            <div class="attribute dice-button" (click)="selectDice('defenseDice')" [class.selected]="isDiceSelected('defenseDice')">
+                <span class="label">Dé de défense</span>
+                <div class="dice-display">
+                    <img
+                        class="dice-icon"
+                        [src]="getDiceImage(playerService.player().defenseDice === diceType.D6 ? diceType.D6 : diceType.D4)"
+                        alt="Defense dice"
+                    />
+                </div>
+                <div class="dice-value">{{ playerService.player().defenseDice === diceType.D6 ? '6' : '4' }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bouton de validation -->
+    <div class="attribute-group validation-section">
+        <button class="validate-button" [disabled]="!playerService.canCreateCharacter()" (click)="onValidate()">Valider le personnage</button>
+    </div>
+</div>

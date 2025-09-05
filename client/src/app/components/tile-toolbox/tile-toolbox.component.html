@@ -1,0 +1,7 @@
+<div class="tile-toolbox">
+    <div *ngFor="let type of tileTypes" class="tile-option" [class.selected]="isActive(type)" (click)="setActiveTool(type)">
+        <div class="tile-image-container">
+            <img [src]="getImagePath(type)" [alt]="type" loading="lazy" />
+        </div>
+    </div>
+</div>

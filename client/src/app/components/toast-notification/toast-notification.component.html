@@ -1,0 +1,26 @@
+<div class="toast-container" *ngIf="message() as playerTurn" @toastAnimation>
+    <div class="toast-backdrop"></div>
+    <div class="toast">
+        <div class="toast-content">
+            <div class="toast-header">
+                <i class="material-icons player-icon">person</i>
+                <div class="player-turn-text">Changement de joueur</div>
+            </div>
+            <div class="toast-message">
+                <div class="player-name">
+                    <span class="highlight">{{ playerTurn.playerName }}</span>
+                    <span class="turn-text">à vous de jouer !</span>
+                </div>
+                <div class="countdown-container">
+                    <div class="countdown-ring">
+                        <svg class="countdown-progress" viewBox="0 0 100 100">
+                            <circle class="progress-bg" cx="50" cy="50" r="45" />
+                            <circle class="progress-bar" cx="50" cy="50" r="45" [style.strokeDashoffset]="getProgressOffset(countdown())" />
+                        </svg>
+                        <div class="countdown">{{ countdown() }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

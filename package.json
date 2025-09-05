@@ -1,0 +1,18 @@
+{
+  "name": "log2990-111",
+  "version": "1.0.0",
+  "description": "Projet de base pour le cours de LOG2990",
+  "scripts": {
+    "lint": "cd client && npm run lint && cd ../server && npm run lint",
+    "lint:fix": "cd client && npm run lint:fix && cd ../server && npm run lint:fix",
+    "start:client": "cd client && npm start",
+    "start:server": "cd server && npm start",
+    "start": "concurrently \"npm run start:client\" \"npm run start:server\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "@nestjs/swagger": "^11.1.2"
+  }
+}

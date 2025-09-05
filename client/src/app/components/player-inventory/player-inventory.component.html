@@ -1,0 +1,10 @@
+<div class="inventory-container">
+    <div class="inventory-slots">
+        <div class="inventory-slot" *ngFor="let slot of slots; let i = index">
+            <div class="slot-content">
+                <span class="empty-slot-text">Vide</span>
+            </div>
+            <div class="slot-number">{{ i + 1 }}</div>
+        </div>
+    </div>
+</div>

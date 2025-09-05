@@ -1,0 +1,12 @@
+<div class="object-container">
+    <div class="object-item" *ngFor="let itemContainer of itemContainers()">
+        <img
+            [src]="getItemImageUrl(itemContainer.item)"
+            [alt]="itemContainer.item"
+            [ngClass]="isEmpty(itemContainer) ? 'empty' : ''"
+            draggable="true"
+            (dragstart)="onDragStart($event, itemContainer.item)"
+        />
+        <span class="item-count">{{ itemContainer.count }}</span>
+    </div>
+</div>

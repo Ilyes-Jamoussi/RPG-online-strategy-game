@@ -1,0 +1,21 @@
+<div class="create-session-container">
+    <div class="background-particles"></div>
+    <div class="content-wrapper">
+        <header class="page-header">
+            <h1 class="page-title">Créer une session</h1>
+            <div class="header-actions">
+                <button class="back-button" (click)="onBack()">Retour</button>
+            </div>
+        </header>
+
+        <div class="games-grid">
+            <ng-container *ngIf="visibleGameDisplays() && visibleGameDisplays().length > 0; else noGames">
+                <app-game-card *ngFor="let game of visibleGameDisplays()" [game]="game" (startGame)="onStartGame($event)"> </app-game-card>
+            </ng-container>
+        </div>
+
+        <ng-template #noGames>
+            <div class="no-games-message">Aucun jeu disponible pour le moment</div>
+        </ng-template>
+    </div>
+</div>

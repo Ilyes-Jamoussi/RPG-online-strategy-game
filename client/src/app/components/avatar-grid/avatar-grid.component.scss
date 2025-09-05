@@ -1,0 +1,8 @@
+.avatar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    padding: 1rem;
+}

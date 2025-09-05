@@ -1,0 +1,17 @@
+<div class="game-board" [style.grid-template-columns]="'repeat(' + board().length + ', 1fr)'">
+    <div *ngFor="let row of board(); let y = index; trackBy: trackByIndex" class="board-row">
+        <app-board-tile
+            *ngFor="let tile of row; let x = index; trackBy: trackByIndex"
+            [tile]="tile"
+            [position]="{ x, y }"
+            [isMyTurn]="isMyTurn"
+            (leftClick)="onLeftClick($event)"
+            (hover)="onHover($event)"
+            (hoverOut)="onHoverOut()"
+            (rightClick)="onRightClick($event.event, $event.position)"
+        />
+    </div>
+    <div *ngIf="contextMenuText" class="context-menu" [style.left.px]="contextMenuPosition?.x" [style.top.px]="contextMenuPosition?.y">
+        {{ contextMenuText }}
+    </div>
+</div>

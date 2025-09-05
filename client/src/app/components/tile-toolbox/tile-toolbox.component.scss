@@ -1,0 +1,76 @@
+// Variables
+$tile-size: 60px;
+$gap: 8px;
+$border-radius: 8px;
+$primary-color: #2196f3;
+$hover-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$selected-shadow: 0 0 0 2px rgba(33, 150, 243, 0.3);
+
+.tile-toolbox {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax($tile-size, 1fr));
+    gap: $gap;
+    padding: $gap;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tile-option {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    background: white;
+    border-radius: $border-radius;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    overflow: hidden;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $hover-shadow;
+    }
+
+    &.selected {
+        border-color: $primary-color;
+        box-shadow: $selected-shadow;
+    }
+
+    .tile-image-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px;
+        box-sizing: border-box;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc($border-radius - 2px);
+            transition: transform 0.2s ease;
+        }
+    }
+
+    &:active {
+        transform: translateY(1px);
+
+        img {
+            transform: scale(0.95);
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    .tile-toolbox {
+        grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+        gap: 6px;
+        padding: 6px;
+    }
+}

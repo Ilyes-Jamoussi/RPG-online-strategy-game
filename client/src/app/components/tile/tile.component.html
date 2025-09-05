@@ -1,0 +1,23 @@
+<div
+    class="tile"
+    [class.drag-over]="isDragOver"
+    (mousedown)="onMouseDown($event)"
+    (mouseenter)="onMouseEnter()"
+    (dragover)="onDragOver($event)"
+    (dragleave)="onDragLeave()"
+    (drop)="onDrop($event)"
+>
+    <img class="tile-background" [src]="getTileBackgroundImage()" [alt]="'Tuile ' + tile.type" loading="lazy" />
+
+    <div *ngIf="tile.item" class="tile-item" [class.placing]="isPlacing" [class.dragging]="isDragging">
+        <img
+            [src]="getPlacedItemImage()"
+            [alt]="'Item ' + tile.item"
+            loading="lazy"
+            draggable="true"
+            (mousedown)="onItemMouseDown($event)"
+            (dragstart)="onItemDragStart($event, tile.item)"
+            (dragend)="onItemDragEnd()"
+        />
+    </div>
+</div>

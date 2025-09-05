@@ -1,0 +1,20 @@
+<div class="notification-container" *ngIf="notification() as notif">
+    <div class="notification-card" [ngClass]="notif.type">
+        <div class="notification-icon">
+            <div class="icon-circle">
+                <i class="material-icons" *ngIf="notif.type === 'error'">error_outline</i>
+                <i class="material-icons" *ngIf="notif.type === 'victory'">emoji_events</i>
+            </div>
+        </div>
+        <div class="notification-content">
+            <h2 class="notification-title">{{ notif.title }}</h2>
+            <p class="notification-message">{{ notif.message }}</p>
+        </div>
+        <div class="notification-actions">
+            <button class="notification-button" (click)="goHome()">
+                <i class="material-icons">home</i>
+                <span class="button-text">Retour à l'accueil</span>
+            </button>
+        </div>
+    </div>
+</div>

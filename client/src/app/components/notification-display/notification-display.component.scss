@@ -1,0 +1,253 @@
+// Variables
+$error-red: #ff4444;
+$error-red-dark: #ff3333;
+$error-red-light: #ff6666;
+$error-red-transparent: rgba(255, 68, 68, 0.2);
+
+$victory-green: #4caf50;
+$victory-green-dark: #388e3c;
+$victory-green-light: #81c784;
+$victory-green-transparent: rgba(76, 175, 80, 0.2);
+
+$white: #ffffff;
+$black-transparent: rgba(0, 0, 0, 0.6);
+
+.notification-container {
+    position: fixed;
+    inset: 0;
+    background-color: $black-transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 0.3s ease-out forwards;
+    will-change: opacity, backdrop-filter;
+    backdrop-filter: blur(8px);
+}
+
+.notification-card {
+    background: $white;
+    border-radius: 24px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.15),
+        0 0 2px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transform: translateY(30px);
+    opacity: 0;
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
+
+    &.error {
+        .icon-circle {
+            background: linear-gradient(135deg, $error-red-light, $error-red);
+            box-shadow: 0 8px 20px $error-red-transparent;
+        }
+
+        .notification-title {
+            color: $error-red;
+            &::after {
+                background-color: $error-red;
+            }
+        }
+
+        .notification-button {
+            background: linear-gradient(135deg, $error-red, $error-red-dark);
+            &:hover {
+                background: linear-gradient(135deg, $error-red-light, $error-red);
+                box-shadow: 0 8px 20px $error-red-transparent;
+            }
+        }
+    }
+
+    &.victory {
+        .icon-circle {
+            background: linear-gradient(135deg, $victory-green-light, $victory-green);
+            box-shadow: 0 8px 20px $victory-green-transparent;
+        }
+
+        .notification-title {
+            color: $victory-green;
+            &::after {
+                background-color: $victory-green;
+            }
+        }
+
+        .notification-button {
+            background: linear-gradient(135deg, $victory-green, $victory-green-dark);
+            &:hover {
+                background: linear-gradient(135deg, $victory-green-light, $victory-green);
+                box-shadow: 0 8px 20px $victory-green-transparent;
+            }
+        }
+    }
+}
+
+.notification-icon {
+    margin-bottom: 0.5rem;
+}
+
+.icon-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
+    animation: pulseIcon 2s infinite;
+
+    i {
+        color: $white;
+        font-size: 40px;
+        animation: bounceIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+}
+
+.notification-content {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.notification-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    position: relative;
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out 0.3s forwards;
+    will-change: transform, opacity;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 3px;
+        opacity: 0;
+        border-radius: 3px;
+        animation: expandWidth 0.4s ease-out 0.6s forwards;
+        will-change: width, opacity;
+    }
+}
+
+.notification-message {
+    color: #666;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 90%;
+    opacity: 0;
+    animation: fadeInUp 0.4s ease-out 0.4s forwards;
+    will-change: transform, opacity;
+}
+
+.notification-actions {
+    width: 100%;
+    padding-top: 0.5rem;
+}
+
+.notification-button {
+    color: $white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.4s ease-out 0.5s forwards;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity, background-color, box-shadow;
+
+    i {
+        font-size: 20px;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expandWidth {
+    to {
+        width: 60px;
+        opacity: 0.3;
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulseIcon {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

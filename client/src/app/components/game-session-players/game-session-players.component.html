@@ -1,0 +1,30 @@
+<div class="players-container">
+    <div
+        *ngFor="let player of gameSessionPlayers(); trackBy: trackByPlayerId"
+        class="player-item"
+        [class.active]="player.isActive"
+        [class.abandoned]="player.hasAbandoned"
+    >
+        <div class="player-main-info">
+            <div class="player-avatar">
+                <img [src]="getAvatarUrl(player.avatar)" [alt]="player.name" />
+            </div>
+            <div class="player-details">
+                <div class="player-name-container">
+                    <span class="player-name">{{ player.name }}</span>
+                    <span *ngIf="player.isAdmin" class="admin-badge" title="Organisateur">
+                        <mat-icon>stars</mat-icon>
+                    </span>
+                    <span *ngIf="player.isActive" class="active-badge">
+                        <mat-icon>play_arrow</mat-icon>
+                        Tour actif
+                    </span>
+                </div>
+                <div class="player-stats">
+                    <mat-icon>military_tech</mat-icon>
+                    {{ player.combatsWon }} combat{{ player.combatsWon !== 1 ? 's' : '' }} gagné{{ player.combatsWon !== 1 ? 's' : '' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

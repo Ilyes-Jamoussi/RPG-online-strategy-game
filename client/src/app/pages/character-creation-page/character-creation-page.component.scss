@@ -1,0 +1,104 @@
+.character-creation-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding: 1.5rem;
+    height: 100vh;
+    max-height: 100vh;
+    overflow: hidden;
+
+    .title-container {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+
+        div {
+            grid-column: 1 / -1;
+            background: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 0.75rem;
+        }
+
+        .title {
+            color: #3498db;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin: 0;
+            text-align: center;
+        }
+    }
+
+    app-character-attributes-panel {
+        height: calc(100vh - 7rem);
+        overflow: auto;
+
+        ::ng-deep .character-attributes-panel {
+            height: 100%;
+            max-height: none;
+            overflow: auto;
+        }
+    }
+
+    app-avatar-selection-panel {
+        height: calc(100vh - 7rem);
+        overflow: hidden;
+
+        ::ng-deep .panel-layout {
+            height: 100%;
+            max-height: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            app-avatar-animated-display {
+                flex-shrink: 0;
+                max-height: 40%;
+            }
+
+            app-avatar-grid {
+                flex: 1;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                overflow: auto;
+
+                ::ng-deep .avatar-grid {
+                    padding: 0.5rem;
+                    gap: 1rem;
+                    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        height: auto;
+        min-height: 100vh;
+        overflow: auto;
+        padding: 1rem;
+        gap: 1rem;
+
+        .title-container {
+            max-width: 100%;
+            margin: 0;
+        }
+
+        app-character-attributes-panel,
+        app-avatar-selection-panel {
+            height: auto;
+            min-height: 0;
+            overflow: visible;
+
+            ::ng-deep .character-attributes-panel,
+            ::ng-deep .panel-layout {
+                height: auto;
+                overflow: visible;
+            }
+        }
+    }
+}

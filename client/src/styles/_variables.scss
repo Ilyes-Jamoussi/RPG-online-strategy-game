@@ -1,0 +1,42 @@
+// Colors
+$primary-dark: #eef2f6;
+$primary-light: #f8fafc;
+$container-bg: #e2e8f0;
+$accent-primary: #3b82f6;
+$accent-secondary: #60a5fa;
+$danger-primary: #dc2626;
+$danger-light: #ef4444;
+$text-primary: #1e293b;
+$text-secondary: #475569;
+
+// Typography
+$font-family: 'Poppins', sans-serif;
+$font-size-base: 1rem;
+$font-size-sm: 0.875rem;
+$font-size-lg: 1.25rem;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+// Spacing
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// Border radius
+$border-radius-sm: 8px;
+$border-radius-md: 12px;
+$border-radius-lg: 16px;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba($accent-primary, 0.1);
+$shadow-md: 0 4px 6px rgba($accent-primary, 0.1);
+$shadow-lg: 0 8px 12px rgba($accent-primary, 0.1);
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s ease;
+$transition-slow: 0.5s ease;

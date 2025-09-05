@@ -1,0 +1,15 @@
+<div
+    class="board-tile"
+    [ngClass]="classes"
+    (click)="onLeftClick()"
+    (contextmenu)="onRightClick($event)"
+    (mouseenter)="onHover()"
+    (mouseleave)="onMouseLeave()"
+>
+    <img [src]="tileImageUrl" [alt]="tile.baseTile.type" class="tile-layer" />
+    @if (tile.baseTile.item) {
+    <img [src]="itemImageUrl" [alt]="tile.baseTile.item" class="item-layer" />
+    } @if (tile.occupantId) {
+    <img [src]="avatarImageUrl" [alt]="occupant?.name" class="avatar-layer" />
+    }
+</div>

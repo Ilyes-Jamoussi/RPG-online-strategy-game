@@ -1,0 +1,58 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+// Global styles
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $font-family;
+    background-color: $primary-dark;
+    color: $text-primary;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+// Common components styles
+.section-title {
+    @include section-title;
+}
+
+.panel-section {
+    @include panel-section;
+}
+
+// Material overrides
+.success-snackbar {
+    background: #10b981 !important;
+    color: white !important;
+}
+
+.error-snackbar {
+    background: $danger-light !important;
+    color: white !important;
+}
+
+.mat-mdc-snack-bar-container {
+    &.success-snackbar {
+        --mdc-snackbar-container-color: #10b981;
+        --mat-mdc-snack-bar-button-color: white;
+        --mdc-snackbar-supporting-text-color: white;
+    }
+
+    &.error-snackbar {
+        --mdc-snackbar-container-color: #{$danger-light};
+        --mat-mdc-snack-bar-button-color: white;
+        --mdc-snackbar-supporting-text-color: white;
+    }
+}

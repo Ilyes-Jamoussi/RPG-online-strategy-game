@@ -1,0 +1,29 @@
+@use 'variables' as *;
+
+@mixin container-styles {
+    background: $container-bg;
+    border-radius: $border-radius-md;
+    padding: $spacing-md;
+    box-shadow: $shadow-md;
+    border: 1px solid rgba($accent-primary, 0.08);
+}
+
+@mixin section-title {
+    font-size: $font-size-lg;
+    font-weight: $font-weight-semibold;
+    color: $accent-primary;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid rgba($accent-primary, 0.1);
+    font-family: $font-family;
+    letter-spacing: -0.5px;
+}
+
+@mixin panel-section {
+    @include container-styles;
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}

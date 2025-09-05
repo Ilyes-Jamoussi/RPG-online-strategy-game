@@ -1,0 +1,35 @@
+<div class="match-info">
+    <div class="info-container">
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">
+                    <mat-icon>grid_on</mat-icon>
+                </div>
+                <div class="info-content">
+                    <span class="info-label">Taille de la carte</span>
+                    <span class="info-value">{{ mapSize }}x{{ mapSize }}</span>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <div class="info-icon">
+                    <mat-icon>groups</mat-icon>
+                </div>
+                <div class="info-content">
+                    <span class="info-label">Joueurs</span>
+                    <span class="info-value">{{ playersCount() }}</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="active-player-card" *ngIf="activePlayer()">
+            <div class="info-icon">
+                <mat-icon>person_outline</mat-icon>
+            </div>
+            <div class="info-content">
+                <span class="info-label">Tour du joueur</span>
+                <span class="info-value active">{{ activePlayer()?.name }}</span>
+            </div>
+        </div>
+    </div>
+</div>

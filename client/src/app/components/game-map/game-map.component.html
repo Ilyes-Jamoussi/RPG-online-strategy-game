@@ -1,0 +1,26 @@
+<div
+    class="grid"
+    (mouseup)="onMouseUp()"
+    (mouseleave)="onMouseUp()"
+    [style.grid-template-columns]="'repeat(' + mapSize + ', 1fr)'"
+    (mousedown)="onMouseDown($event)"
+    (dragend)="onDragEnd()"
+    (contextmenu)="onContextMenu($event)"
+>
+    <div *ngFor="let row of grid(); let y = index">
+        <div *ngFor="let tile of row; let x = index; trackBy: trackByIndex" class="tile-container">
+            <app-tile
+                [tile]="tile"
+                [x]="x"
+                [y]="y"
+                (tileClick)="onTileClicked(x, y)"
+                (tileHover)="onTileHover(x, y)"
+                (tileDrop)="onTileDrop(x, y)"
+                (tileRightClick)="onTileRightClicked(x, y)"
+                (itemDragStart)="onItemDragStart(x, y)"
+                (itemDragEnd)="onDragEnd()"
+            >
+            </app-tile>
+        </div>
+    </div>
+</div>

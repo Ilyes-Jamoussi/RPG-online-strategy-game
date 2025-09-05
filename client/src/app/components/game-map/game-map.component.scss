@@ -1,0 +1,169 @@
+// Variables
+$grid-bg: #f8fafc;
+$grid-gap: 1px;
+$grid-padding: 8px;
+$tile-border: #e2e8f0;
+$hover-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+$active-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+
+:host {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: $grid-padding;
+    box-sizing: border-box;
+}
+
+.game-map {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.grid {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    max-width: min(100%, calc(100vh - 150px));
+    max-height: min(100%, calc(100vh - 150px));
+    margin: 0 auto;
+    background: $grid-bg;
+    gap: $grid-gap;
+    padding: $grid-gap;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, rgba(0, 0, 0, 0.02) 25%, transparent 25%),
+            linear-gradient(-45deg, rgba(0, 0, 0, 0.02) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgba(0, 0, 0, 0.02) 75%),
+            linear-gradient(-45deg, transparent 75%, rgba(0, 0, 0, 0.02) 75%);
+        background-size: 20px 20px;
+        background-position:
+            0 0,
+            0 10px,
+            10px -10px,
+            -10px 0;
+        pointer-events: none;
+        border-radius: 8px;
+        opacity: 0.5;
+    }
+}
+
+.tile-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+    background: white;
+    border: 1px solid $tile-border;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.2s ease;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        z-index: 2;
+        box-shadow: $hover-shadow;
+
+        &::before {
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
+        box-shadow: $active-shadow;
+    }
+
+    app-tile {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+}
+
+// Tile type styles with improved patterns
+.tile-wall {
+    background: repeating-linear-gradient(45deg, #4a5568, #4a5568 5px, #2d3748 5px, #2d3748 10px);
+}
+
+.tile-door {
+    &.closed {
+        background: repeating-linear-gradient(45deg, #8b4513, #8b4513 5px, #6d370f 5px, #6d370f 10px);
+    }
+    &.open {
+        background: repeating-linear-gradient(45deg, #deb887, #deb887 5px, #d4a76a 5px, #d4a76a 10px);
+    }
+}
+
+.tile-water {
+    background: repeating-linear-gradient(45deg, #4299e1, #4299e1 5px, #3182ce 5px, #3182ce 10px);
+    animation: waterFlow 2s linear infinite;
+}
+
+.tile-ice {
+    background: repeating-linear-gradient(135deg, #ebf8ff, #ebf8ff 5px, #bee3f8 5px, #bee3f8 10px);
+}
+
+.tile-container.hoverable {
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(255, 255, 255, 0);
+        transition: background-color 0.2s ease;
+    }
+
+    &:hover::after {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes waterFlow {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 20px 20px;
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+    :host {
+        padding: $grid-gap;
+    }
+
+    .grid {
+        gap: 1px;
+        padding: 1px;
+        max-width: min(100%, calc(100vh - 100px));
+        max-height: min(100%, calc(100vh - 100px));
+    }
+}

@@ -1,0 +1,208 @@
+@use 'variables' as *;
+
+.toast-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.toast-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($text-primary, 0.3);
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.toast {
+    background: linear-gradient(135deg, $primary-light, white);
+    border-radius: $border-radius-lg;
+    padding: $spacing-xl;
+    box-shadow:
+        $shadow-lg,
+        0 0 20px rgba($accent-primary, 0.2);
+    min-width: 400px;
+    max-width: 80%;
+    position: relative;
+    z-index: 1001;
+    pointer-events: auto;
+    border: 2px solid rgba($accent-primary, 0.1);
+    text-align: center;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(to right, $accent-primary, $accent-secondary);
+    }
+}
+
+.toast-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+}
+
+.toast-header {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    margin-bottom: $spacing-md;
+    padding-bottom: $spacing-md;
+    border-bottom: 1px solid rgba($accent-primary, 0.1);
+    width: 100%;
+    justify-content: center;
+}
+
+.player-icon {
+    font-size: 24px;
+    color: $accent-primary;
+    background: rgba($accent-primary, 0.1);
+    padding: $spacing-sm;
+    border-radius: 50%;
+}
+
+.player-turn-text {
+    font-size: $font-size-sm;
+    color: $text-secondary;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.toast-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-lg;
+}
+
+.player-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spacing-xs;
+
+    .highlight {
+        font-size: $font-size-lg;
+        color: $accent-primary;
+        font-weight: $font-weight-bold;
+        background: rgba($accent-primary, 0.1);
+        padding: $spacing-sm $spacing-md;
+        border-radius: $border-radius-md;
+        position: relative;
+        overflow: hidden;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(white, 0.2), transparent);
+            animation: shine 2s infinite;
+        }
+    }
+
+    .turn-text {
+        color: $text-secondary;
+        font-weight: $font-weight-medium;
+    }
+}
+
+.countdown-container {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: $spacing-md auto 0;
+}
+
+.countdown-ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.countdown-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+
+    circle {
+        fill: none;
+        stroke-width: 4;
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.3s ease;
+    }
+
+    .progress-bg {
+        stroke: rgba($accent-primary, 0.1);
+    }
+
+    .progress-bar {
+        stroke: $accent-primary;
+        stroke-dasharray: 283;
+        filter: drop-shadow(0 0 2px rgba($accent-primary, 0.5));
+    }
+}
+
+.countdown {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: $font-weight-bold;
+    color: $accent-primary;
+    text-shadow: 0 2px 4px rgba($accent-primary, 0.2);
+    animation: pulseText 1s infinite;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulseText {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%);
+    }
+    50%,
+    100% {
+        transform: translateX(100%);
+    }
+}

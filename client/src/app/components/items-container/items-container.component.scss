@@ -1,0 +1,35 @@
+.object-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.object-item {
+    position: relative;
+    width: 60px; // largeur fixée pour le conteneur de chaque item
+    height: 60px; // hauteur fixée pour le conteneur de chaque item
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden; // évite que l'image dépasse
+}
+
+.object-item img {
+    width: 100%; // adapte l'image à la largeur du conteneur
+    height: 100%; // adapte l'image à la hauteur du conteneur
+    object-fit: cover; // recadre l'image tout en remplissant le conteneur
+}
+
+.object-item img.empty {
+    filter: grayscale(100%);
+}
+
+.item-count {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 0.8rem;
+    padding: 2px 4px;
+    border-radius: 2px;
+}

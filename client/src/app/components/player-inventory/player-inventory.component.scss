@@ -1,0 +1,114 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+
+.player-inventory {
+    @include container-styles;
+
+    .inventory-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: $spacing-sm;
+
+        .inventory-item {
+            aspect-ratio: 1;
+            background: rgba($accent-primary, 0.05);
+            border-radius: $border-radius-sm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: $transition-normal;
+
+            &:hover {
+                background: rgba($accent-primary, 0.1);
+                transform: translateY(-2px);
+            }
+
+            &.empty {
+                background: rgba($text-secondary, 0.05);
+                cursor: default;
+
+                &:hover {
+                    background: rgba($text-secondary, 0.05);
+                    transform: none;
+                }
+            }
+        }
+    }
+}
+
+.inventory-container {
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .inventory-slots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+        gap: 0.5rem;
+        padding: 0.5rem;
+        height: 100%;
+        min-height: 0;
+        overflow-y: auto;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 2px;
+
+            &:hover {
+                background: rgba(59, 130, 246, 0.3);
+            }
+        }
+
+        .inventory-slot {
+            aspect-ratio: 1;
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.08);
+            border-radius: 6px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: rgba(59, 130, 246, 0.08);
+                transform: translateY(-1px);
+                box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+            }
+
+            .slot-content {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.25rem;
+
+                .empty-slot-text {
+                    font-size: 0.7rem;
+                    color: #64748b;
+                    text-align: center;
+                }
+            }
+
+            .slot-number {
+                position: absolute;
+                top: 0.25rem;
+                right: 0.25rem;
+                font-size: 0.7rem;
+                color: #64748b;
+                font-weight: 500;
+            }
+        }
+    }
+}

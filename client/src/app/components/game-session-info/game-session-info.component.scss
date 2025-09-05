@@ -1,0 +1,137 @@
+@use 'variables' as *;
+@use 'mixins' as *;
+@use 'sass:color';
+
+$card-padding: 16px;
+$icon-size: 44px;
+$border-radius: 10px;
+$transition-duration: 0.2s;
+
+$color-text-primary: #1e293b;
+$color-text-secondary: #64748b;
+$color-background: #f8fafc;
+$color-active: #2563eb;
+$color-border-active: #93c5fd;
+$color-hover: #f1f5f9;
+
+.match-info {
+    background: white;
+    border-radius: $border-radius + 2;
+    padding: $card-padding + 4;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.info-container {
+    display: flex;
+    flex-direction: column;
+    gap: $card-padding + 4;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $card-padding;
+}
+
+%card-base {
+    display: flex;
+    align-items: center;
+    gap: $card-padding;
+    padding: $card-padding;
+    border-radius: $border-radius;
+    transition: all $transition-duration ease;
+}
+
+.info-card {
+    @extend %card-base;
+    background: $color-background;
+
+    &:hover {
+        background: $color-hover;
+        transform: translateY(-1px);
+    }
+}
+
+.active-player-card {
+    @extend %card-base;
+    background: color.adjust($color-active, $alpha: -0.9);
+    border: 1px solid $color-border-active;
+
+    &:hover {
+        background: color.adjust($color-active, $alpha: -0.85);
+        transform: translateY(-1px);
+    }
+
+    .info-value.active {
+        color: $color-active;
+    }
+}
+
+.info-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: $icon-size;
+    height: $icon-size;
+    border-radius: $border-radius;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+    mat-icon {
+        color: $color-text-secondary;
+        $icon-inner-size: 24px;
+        font-size: $icon-inner-size;
+        width: $icon-inner-size;
+        height: $icon-inner-size;
+    }
+}
+
+.info-content {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: $color-text-secondary;
+    font-weight: 500;
+}
+
+.info-value {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: $color-text-primary;
+}
+
+// Media queries pour la responsivité
+@media (max-width: 480px) {
+    $mobile-icon-size: 36px;
+    $mobile-padding: 12px;
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-card,
+    .active-player-card {
+        padding: $mobile-padding;
+        gap: $mobile-padding;
+    }
+
+    .info-icon {
+        width: $mobile-icon-size;
+        height: $mobile-icon-size;
+
+        mat-icon {
+            $mobile-icon-inner-size: 20px;
+            font-size: $mobile-icon-inner-size;
+            width: $mobile-icon-inner-size;
+            height: $mobile-icon-inner-size;
+        }
+    }
+
+    .info-value {
+        font-size: 1rem;
+    }
+}

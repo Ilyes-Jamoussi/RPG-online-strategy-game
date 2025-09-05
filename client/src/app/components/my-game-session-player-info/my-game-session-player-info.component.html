@@ -1,0 +1,49 @@
+<div class="player-panel">
+    <div class="player-header">
+        <img [src]="getAvatarUrl(myPlayer().avatar)" [alt]="myPlayer().name" class="player-avatar" />
+        <div class="player-name">{{ myPlayer().name }}</div>
+    </div>
+
+    <div class="health-bar">
+        <div class="health-bar-fill" [style.width.%]="healthPercentage">
+            <span class="health-text">{{ myPlayer().currentHp }} / {{ myPlayer().maxHp }} PV</span>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-item">
+            <span class="stat-label">Rapidité</span>
+            <span class="stat-value">{{ myPlayer().speed }}</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Attaque</span>
+            <span class="stat-value">{{ myPlayer().attack }}</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-label">Défense</span>
+            <span class="stat-value">{{ myPlayer().defense }}</span>
+        </div>
+    </div>
+
+    <div class="dice-info">
+        <div class="dice-item">
+            <span class="dice-label">Dé d'attaque</span>
+            <img [src]="getDiceImage(myPlayer().attackDice)" [alt]="'D' + myPlayer().attackDice" class="dice-image" />
+        </div>
+        <div class="dice-item">
+            <span class="dice-label">Dé de défense</span>
+            <img [src]="getDiceImage(myPlayer().defenseDice)" [alt]="'D' + myPlayer().defenseDice" class="dice-image" />
+        </div>
+    </div>
+
+    <div class="actions-info">
+        <div class="action-item">
+            <span class="action-label">Mouvements restants</span>
+            <span class="action-value">{{ myPlayer().remainingMoves }}</span>
+        </div>
+        <div class="action-item">
+            <span class="action-label">Actions restantes</span>
+            <span class="action-value">{{ myPlayer().remainingActions }}</span>
+        </div>
+    </div>
+</div>

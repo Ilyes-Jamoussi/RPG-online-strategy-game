@@ -1,0 +1,331 @@
+@use 'sass:color';
+
+// Variables
+$primary-color: #2196f3;
+$danger-color: #f44336;
+$text-color: #333;
+$border-color: #e0e0e0;
+$background-color: #f8f9fa;
+$white: #fff;
+$panel-width: 300px;
+
+// Spacing
+$spacing-xs: 0.5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+
+// Shadows
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+// Mixins
+@mixin scrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 3px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 3px;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.3);
+        }
+    }
+}
+
+$breakpoint-lg: 1400px;
+$breakpoint-md: 1200px;
+$breakpoint-sm: 992px;
+$min-panel-width: 220px;
+$max-panel-width: 300px;
+
+.game-editor-page {
+    height: 100vh;
+    width: 100vw;
+    background-color: $background-color;
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.editor-title {
+    width: 98vw;
+    margin: 0 auto 1vh;
+    text-align: center;
+    padding: 1vh;
+    background: $white;
+    border-radius: 12px;
+    box-shadow: $shadow-sm;
+    box-sizing: border-box;
+
+    h1 {
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+        color: $primary-color;
+        font-weight: 600;
+        margin: 0;
+    }
+}
+
+.editor-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    min-height: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.editor-grid {
+    display: grid;
+    width: 98vw;
+    gap: 1vw;
+    margin: 0 auto;
+    grid-template-columns: minmax(220px, 300px) 1fr minmax(220px, 300px);
+    align-items: start;
+    height: 100%;
+    overflow: hidden;
+
+    @media (max-width: $breakpoint-sm) {
+        grid-template-columns: 1fr;
+        width: 100%;
+        gap: 1vh;
+    }
+}
+
+.editor-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    overflow-y: auto;
+    @include scrollbar;
+
+    .panel-section {
+        background: $white;
+        border-radius: 12px;
+        padding: 1vh;
+        box-shadow: $shadow-sm;
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+
+        .section-title {
+            font-size: 1rem;
+            margin-bottom: 1vh;
+        }
+    }
+}
+
+.editor-main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    .map-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: $white;
+        border-radius: 12px;
+        box-shadow: $shadow-sm;
+        overflow: hidden;
+    }
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    height: 100%;
+    overflow-y: auto;
+    @include scrollbar;
+}
+
+.form-group {
+    margin-bottom: 2vh;
+    width: 100%;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 1vh;
+        color: $text-color;
+        font-weight: 500;
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 1vh;
+        border: 1px solid $border-color;
+        border-radius: 8px;
+        font-size: clamp(0.8rem, 1.2vw, 0.9rem);
+        transition: all 0.2s ease;
+        box-sizing: border-box;
+
+        &:focus {
+            outline: none;
+            border-color: $primary-color;
+            box-shadow: 0 0 0 3px rgba($primary-color, 0.1);
+        }
+    }
+
+    textarea.form-control {
+        resize: vertical;
+        min-height: 80px;
+        max-height: 150px;
+    }
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1vh;
+    margin-top: auto;
+    padding-top: 2vh;
+    width: 100%;
+
+    .btn {
+        width: 100%;
+        padding: 1.2vh;
+        font-size: 1rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &.btn-primary {
+            background: $primary-color;
+            color: $white;
+            border: none;
+
+            &:hover {
+                background: color.adjust($primary-color, $lightness: -5%);
+            }
+        }
+
+        &.btn-danger {
+            background: $danger-color;
+            color: $white;
+            border: none;
+
+            &:hover {
+                background: color.adjust($danger-color, $lightness: -5%);
+            }
+        }
+    }
+}
+
+.toolbox-container,
+.items-container {
+    margin-top: $spacing-xs;
+    max-height: calc((100vh - 400px) / 2);
+    overflow-y: auto;
+    @include scrollbar;
+}
+
+.game-editor-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+    gap: 20px;
+}
+
+.editor-header {
+    h1 {
+        margin: 0;
+    }
+}
+
+.editor-content {
+    display: flex;
+    gap: 20px;
+    flex: 1;
+    min-height: 0;
+}
+
+.map-section {
+    flex: 1;
+    min-width: 0;
+}
+
+.tools-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+}
+
+.editor-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.game-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.validation-section {
+    padding: 15px;
+    border-radius: 4px;
+    background-color: #e3f2fd;
+    transition: background-color 0.3s ease;
+
+    &.has-errors {
+        background-color: #ffebee;
+    }
+
+    h3 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    ul {
+        margin: 0;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}

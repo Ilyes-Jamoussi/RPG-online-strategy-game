@@ -1,0 +1,30 @@
+<div class="game-card">
+    <div class="game-image">
+        <img [src]="game.mapPreviewImageUrl" [alt]="game.name" />
+    </div>
+    <div class="game-info">
+        <h2 class="game-title">{{ game.name }}</h2>
+        <div class="game-details">
+            <span class="detail">Taille: {{ game.size }}</span>
+        </div>
+        <p class="game-description">{{ game.description }}</p>
+    </div>
+    <div class="game-actions">
+        <ng-container *ngIf="isAdmin; else playerActions">
+            <button class="action-button edit" (click)="onEditGame()" title="Modifier">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button class="action-button visibility" (click)="onToggleVisibility()" title="{{ game.visibility ? 'Masquer' : 'Afficher' }}">
+                <mat-icon>{{ game.visibility ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <button class="action-button delete" (click)="onDeleteGame()" title="Supprimer">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </ng-container>
+        <ng-template #playerActions>
+            <button class="action-button start" (click)="onStartGame()">
+                <span class="button-content">Nouvelle partie</span>
+            </button>
+        </ng-template>
+    </div>
+</div>

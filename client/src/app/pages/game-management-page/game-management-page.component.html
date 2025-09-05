@@ -1,0 +1,29 @@
+<div class="game-management-container">
+    <header class="page-header">
+        <h1 class="page-title">Administration des Jeux</h1>
+        <div class="header-actions">
+            <button class="back-button" (click)="goBack()">
+                <span class="button-content">Retour</span>
+            </button>
+            <button class="create-button" (click)="onCreateNewGame()">
+                <span class="button-content">Créer un nouveau jeu</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="games-grid">
+        <ng-container *ngIf="gameDisplays() && gameDisplays().length > 0; else noGames">
+            <app-game-card
+                *ngFor="let game of gameDisplays()"
+                [game]="game"
+                [isAdmin]="true"
+                (editGame)="onEditGame($event)"
+                (deleteGame)="onDeleteGame($event)"
+                (toggleVisibility)="onToggleVisibility($event)"
+            ></app-game-card>
+        </ng-container>
+        <ng-template #noGames>
+            <div class="no-games-message">Aucun jeu disponible pour le moment</div>
+        </ng-template>
+    </div>
+</div>
