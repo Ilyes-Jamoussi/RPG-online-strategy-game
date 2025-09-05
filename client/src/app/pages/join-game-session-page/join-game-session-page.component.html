@@ -1,11 +1,11 @@
 <div class="join-session-container">
     <header class="page-header">
         <button class="back-button" (click)="goBack()">
-            <span class="button-content">Retour</span>
+            <span class="button-content">Back</span>
         </button>
     </header>
 
-    <h2 class="title">Joindre une partie</h2>
+    <h2 class="title">Join Game</h2>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
         <div class="input-wrapper">
@@ -15,11 +15,11 @@
                 inputmode="numeric"
                 formControlName="accessCode"
                 class="access-code-input"
-                placeholder="Saisir votre code à 4 chiffres"
+                placeholder="Enter your 4-digit code"
             />
         </div>
 
-        <button type="submit" [disabled]="form.invalid" class="join-button">Joindre</button>
+        <button type="submit" [disabled]="form.invalid" class="join-button">Join</button>
 
         <div class="error-container" *ngIf="errorMessage()">
             <div class="error">

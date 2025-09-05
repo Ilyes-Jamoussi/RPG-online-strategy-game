@@ -2,22 +2,22 @@
 
 <ng-template #adminActions>
     <div class="session-control-container">
-        <!-- 🔐 Bouton cadenas toggle -->
+        <!-- 🔐 Lock toggle button -->
         <button
             class="lock-toggle-button"
             (click)="toggleLock()"
             [disabled]="!canToggleLock"
-            [attr.aria-label]="isLocked ? 'Déverrouiller la salle' : 'Verrouiller la salle'"
+            [attr.aria-label]="isLocked ? 'Unlock room' : 'Lock room'"
         >
             <i class="material-icons">
                 {{ isLocked ? 'lock' : 'lock_open' }}
             </i>
         </button>
 
-        <!-- ▶️ Bouton démarrer la partie -->
+        <!-- ▶️ Start game button -->
         <button class="start-button" [disabled]="!canStartGame" (click)="startGame()">
             <i class="material-icons">play_arrow</i>
-            Démarrer la partie
+            Start Game
         </button>
     </div>
 </ng-template>
@@ -25,6 +25,6 @@
 <ng-template #playerMessage>
     <div class="waiting-message">
         <i class="material-icons">hourglass_empty</i>
-        En attente du démarrage de la partie...
+        Waiting for game to start...
     </div>
 </ng-template>

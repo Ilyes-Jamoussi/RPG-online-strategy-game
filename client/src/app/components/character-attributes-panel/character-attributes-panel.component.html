@@ -1,81 +1,81 @@
 <div class="character-attributes-panel">
-    <!-- Section du nom du personnage -->
+    <!-- Character name section -->
     <div class="attribute-group name-section">
-        <h3>Nom du personnage</h3>
+        <h3>Character Name</h3>
         <div class="name-input-container">
             <input
                 type="text"
                 [ngModel]="playerService.player().name"
                 (ngModelChange)="updateCharacterName($event)"
-                placeholder="Entrez le nom de votre personnage"
+                placeholder="Enter your character's name"
                 maxlength="20"
                 class="character-name-input"
             />
         </div>
     </div>
 
-    <!-- Section des attributs de base -->
+    <!-- Base attributes section -->
     <div class="attribute-group base-attributes">
-        <h3>Attributs de base</h3>
+        <h3>Base Attributes</h3>
         <div class="attributes-container">
-            <!-- Vie -->
+            <!-- Health -->
             <div class="attribute-bar">
                 <div class="attribute-header">
-                    <span class="name">Vie</span>
+                    <span class="name">Health</span>
                     <span class="value">{{ getAttributeValue('maxHp') }}/6</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress" [style.width.%]="(getAttributeValue('maxHp') / 6) * 100"></div>
                 </div>
                 <button class="bonus-button" (click)="selectBonus('maxHp')" [class.selected]="isBonusSelected('maxHp')">+2 Bonus</button>
-                <p class="description">Points de vie du personnage</p>
+                <p class="description">Character's health points</p>
             </div>
 
-            <!-- Rapidité -->
+            <!-- Speed -->
             <div class="attribute-bar">
                 <div class="attribute-header">
-                    <span class="name">Rapidité</span>
+                    <span class="name">Speed</span>
                     <span class="value">{{ getAttributeValue('speed') }}/6</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress" [style.width.%]="(getAttributeValue('speed') / 6) * 100"></div>
                 </div>
                 <button class="bonus-button" (click)="selectBonus('speed')" [class.selected]="isBonusSelected('speed')">+2 Bonus</button>
-                <p class="description">Détermine l'ordre des tours et les points de mouvement</p>
+                <p class="description">Determines turn order and movement points</p>
             </div>
 
-            <!-- Attaque -->
+            <!-- Attack -->
             <div class="attribute-bar">
                 <div class="attribute-header">
-                    <span class="name">Attaque</span>
+                    <span class="name">Attack</span>
                     <span class="value">{{ getAttributeValue('attack') }}/4</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress" [style.width.%]="(getAttributeValue('attack') / 4) * 100"></div>
                 </div>
-                <p class="description">Force avec laquelle une attaque est faite sur l'adversaire</p>
+                <p class="description">Strength with which an attack is made on the opponent</p>
             </div>
 
-            <!-- Défense -->
+            <!-- Defense -->
             <div class="attribute-bar">
                 <div class="attribute-header">
-                    <span class="name">Défense</span>
+                    <span class="name">Defense</span>
                     <span class="value">{{ getAttributeValue('defense') }}/4</span>
                 </div>
                 <div class="progress-bar">
                     <div class="progress" [style.width.%]="(getAttributeValue('defense') / 4) * 100"></div>
                 </div>
-                <p class="description">Capacité à bloquer l'attaque d'un adversaire</p>
+                <p class="description">Ability to block an opponent's attack</p>
             </div>
         </div>
     </div>
 
-    <!-- Section des dés de combat -->
+    <!-- Combat dice section -->
     <div class="attribute-group dice-section">
-        <h3>Sélection des dés de combat</h3>
+        <h3>Combat Dice Selection</h3>
         <div class="dice-container">
             <div class="attribute dice-button" (click)="selectDice('attackDice')" [class.selected]="isDiceSelected('attackDice')">
-                <span class="label">Dé d'attaque</span>
+                <span class="label">Attack Die</span>
                 <div class="dice-display">
                     <img
                         class="dice-icon"
@@ -87,7 +87,7 @@
             </div>
 
             <div class="attribute dice-button" (click)="selectDice('defenseDice')" [class.selected]="isDiceSelected('defenseDice')">
-                <span class="label">Dé de défense</span>
+                <span class="label">Defense Die</span>
                 <div class="dice-display">
                     <img
                         class="dice-icon"
@@ -100,8 +100,8 @@
         </div>
     </div>
 
-    <!-- Bouton de validation -->
+    <!-- Validation button -->
     <div class="attribute-group validation-section">
-        <button class="validate-button" [disabled]="!playerService.canCreateCharacter()" (click)="onValidate()">Valider le personnage</button>
+        <button class="validate-button" [disabled]="!playerService.canCreateCharacter()" (click)="onValidate()">Validate Character</button>
     </div>
 </div>

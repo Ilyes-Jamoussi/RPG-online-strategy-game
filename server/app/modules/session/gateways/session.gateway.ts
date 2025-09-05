@@ -154,12 +154,12 @@ export class SessionGateway implements OnGatewayConnection, OnGatewayDisconnect,
 
         if (!room) {
             this.logger.warn(`Attempted to join a non-existing room: ${sessionId}`);
-            return errorResponse('Session non trouvée');
+            return errorResponse('Session not found');
         }
 
         if (this.sessionService.isRoomLocked(sessionId)) {
             this.logger.warn(`Attempted to join a locked room: ${sessionId}`);
-            return errorResponse('Session est verrouillée');
+            return errorResponse('Session is locked');
         }
 
         return null;

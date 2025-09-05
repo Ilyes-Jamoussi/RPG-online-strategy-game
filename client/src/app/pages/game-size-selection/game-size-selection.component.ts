@@ -23,24 +23,24 @@ interface GameSizeOption {
 export class GameSizeSelectionComponent {
     readonly gameSizes: GameSizeOption[] = [
         {
-            name: 'Petite',
+            name: 'Small',
             size: MapSize.Small,
             gridSize: MapSize.Small,
-            maxPlayers: '2 joueurs',
+            maxPlayers: '2 players',
             items: 2,
         },
         {
-            name: 'Moyenne',
+            name: 'Medium',
             size: MapSize.Medium,
             gridSize: MapSize.Medium,
-            maxPlayers: '2 à 4 joueurs',
+            maxPlayers: '2 to 4 players',
             items: 4,
         },
         {
-            name: 'Grande',
+            name: 'Large',
             size: MapSize.Large,
             gridSize: MapSize.Large,
-            maxPlayers: '2 à 6 joueurs',
+            maxPlayers: '2 to 6 players',
             items: 6,
         },
     ];

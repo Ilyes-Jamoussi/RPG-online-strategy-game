@@ -11,17 +11,17 @@
 
         <nav class="navigation-menu">
             <button class="nav-button" (click)="navigateToJoinGame()">
-                <span class="button-text">Joindre une partie</span>
+                <span class="button-text">Join Game</span>
                 <span class="button-hover-effect"></span>
             </button>
 
             <button class="nav-button" (click)="navigateToCreateGame()">
-                <span class="button-text">Créer une partie</span>
+                <span class="button-text">Create Game</span>
                 <span class="button-hover-effect"></span>
             </button>
 
             <button class="nav-button" (click)="navigateToGameManagement()">
-                <span class="button-text">Administrer les jeux</span>
+                <span class="button-text">Manage Games</span>
                 <span class="button-hover-effect"></span>
             </button>
         </nav>
@@ -29,7 +29,7 @@
         <footer class="team-info">
             <div class="team-container">
                 <div class="team-glow"></div>
-                <h2 class="team-title">Équipe {{ teamInfo.number }}</h2>
+                <h2 class="team-title">Team {{ teamInfo.number }}</h2>
                 <div class="team-members">
                     <p *ngFor="let member of teamInfo.members" class="member-name">
                         {{ member }}

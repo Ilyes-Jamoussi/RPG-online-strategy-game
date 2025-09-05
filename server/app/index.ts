@@ -16,8 +16,8 @@ const bootstrap = async () => {
     app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
     const config = new DocumentBuilder()
-        .setTitle('Cadriciel Serveur')
-        .setDescription('Serveur du projet de base pour le cours de LOG2990')
+        .setTitle('Server Framework')
+        .setDescription('Server for the LOG2990 course base project')
         .setVersion('1.0.0')
         .build();
     const document = SwaggerModule.createDocument(app, config);

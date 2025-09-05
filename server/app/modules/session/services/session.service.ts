@@ -33,7 +33,7 @@ export class SessionService {
     }
 
     leaveSession(sessionId: string, playerId: string): void {
-        this.logger.log(`✅ Joueur ${playerId} retiré de la session ${sessionId}`);
+        this.logger.log(`✅ Player ${playerId} removed from session ${sessionId}`);
         const session = this.getSession(sessionId);
         session.players = session.players.filter((player) => player.id !== playerId);
     }

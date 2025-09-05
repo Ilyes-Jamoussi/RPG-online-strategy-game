@@ -1,5 +1,5 @@
 <div class="game-size-selection">
-    <h1>Sélection de la taille du jeu</h1>
+    <h1>Game Size Selection</h1>
     <div class="size-cards" role="list">
         <div
             *ngFor="let size of gameSizes"
@@ -12,11 +12,11 @@
             <h2>{{ size.name }}</h2>
             <div class="size-details">
                 <p>
-                    <span class="detail-label">Taille de la grille:</span>
+                    <span class="detail-label">Grid Size:</span>
                     {{ size.gridSize }} × {{ size.gridSize }}
                 </p>
                 <p>
-                    <span class="detail-label">Joueurs:</span>
+                    <span class="detail-label">Players:</span>
                     {{ size.maxPlayers }}
                 </p>
                 <p>

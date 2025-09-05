@@ -1,6 +1,6 @@
 {
     "name": "server",
-    "description": "Serveur du projet de base pour le cours de LOG2990",
+    "description": "Server for the LOG2990 course base project",
     "version": "1.2.0",
     "private": true,
     "scripts": {

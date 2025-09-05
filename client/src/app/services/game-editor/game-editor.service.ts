@@ -126,11 +126,11 @@ export class GameEditorService {
         const errors: string[] = [];
 
         if (!this._name.trim()) {
-            errors.push('Le nom du jeu ne doit pas être vide.');
+            errors.push('Game name must not be empty.');
         }
 
         if (!this._description.trim()) {
-            errors.push('La description du jeu ne doit pas être vide.');
+            errors.push('Game description must not be empty.');
         }
 
         this._validationErrors.set(errors);
